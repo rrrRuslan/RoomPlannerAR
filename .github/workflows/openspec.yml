@@ -1,0 +1,24 @@
+name: openspec
+
+on:
+  pull_request:
+    paths: ["openspec/**"]
+  push:
+    branches: [main]
+    paths: ["openspec/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install OpenSpec
+        run: npm install -g @fission-ai/openspec@2.2.0
+      - name: Validate changes and specs
+        run: openspec validate --all --strict --no-interactive

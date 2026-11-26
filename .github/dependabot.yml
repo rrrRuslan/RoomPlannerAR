@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+# Gradle (backend/, android/) і pub (flutter_app/) додаються у фазі 2 разом зі скелетами модулів.

@@ -1,0 +1,34 @@
+schema: spec-driven
+
+context: |
+  Продукт: RoomPlannerAR — AR-сканування кімнат, план приміщення, розміщення 3D-моделей.
+  Клієнти: нативний Android (Kotlin, Compose) і Flutter (iOS + Android).
+  Бекенд: Kotlin, Spring Boot. API: contracts/openapi.yaml (змінює лише architect).
+  Спільна модель кімнати: contracts/room-model.schema.json (метри, площина підлоги).
+  Референс поведінки: reference/ios-app (старий iOS-додаток, лише читання; архітектуру не переносимо).
+  Тікети: Jira-проєкт KAN; зміна входить у назву гілки feat/KAN-<n>-<change>.
+  Текст артефактів — українською; заголовки й ключові слова OpenSpec
+  (Requirement, Scenario, SHALL/MUST, GIVEN/WHEN/THEN) — англійською.
+  Головні правила проєкту: docs/PROJECT.md.
+
+rules:
+  proposal:
+    - Вказати зачеплені компоненти (backend, android, flutter, ar) і чи змінюється API-контракт.
+    - Вказати Jira-тікет KAN-<n>, якщо він уже є, і що поза обсягом.
+  specs:
+    - Вимоги описують поведінку, а не реалізацію; без назв класів і бібліотек.
+    - Кожна вимога має сценарії успіху й помилки, і офлайну, якщо він застосовний.
+    - Відмінності iOS/Android фіксуються явно як окремі сценарії.
+  tasks:
+    - Групувати задачі за агентами (architect, backend-dev, android-dev, flutter-dev, ar-dev, qa, docs-writer).
+    - Зміна контракту — перша задача й окремий PR.
+    - Остання група — qa (паритетні кейси) і docs-writer (документація, матриця паритету).
+
+operations:
+  apply:
+    guidance:
+      - Працювати лише у своїх каталогах (docs/PROJECT.md, розділ 6) і у своєму worktree.
+      - Відмічати виконані задачі в tasks.md; у назві тесту — можливість і вимога.
+  archive:
+    guidance:
+      - Архівувати лише після merge в main; оновити docs/qa/parity-matrix.md і CHANGELOG.md.
